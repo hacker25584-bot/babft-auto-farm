@@ -6707,6 +6707,30 @@ Groupboxes.Exploits_Bypass:AddToggle("BypassSeekingWall",    { Text = "Bypass Se
 Groupboxes.Exploits_Bypass:AddToggle("BypassSnare",          { Text = "Bypass Snare",            Default = false, Tooltip = "Prevents 'Snare' from trapping you." })
 Groupboxes.Exploits_Bypass:AddToggle("BypassBanana",         { Text = "Bypass Banana",           Default = false, Tooltip = "Prevents 'Banana Peel' from slipping you up (sometimes doesn't work)." })
 Groupboxes.Exploits_Bypass:AddToggle("BypassJeff",           { Text = "Bypass Jeff",             Default = false, Tooltip = "Prevents 'Jeff the Killer' from stabbing you (sometimes doesn't work)." })
+Groupboxes.Exploits_Bypass:AddDivider()
+Groupboxes.Exploits_Bypass:AddToggle("AntiLag", {
+	Text = "Anti Lag",
+	Default = false,
+	Tooltip = "Replaces room materials with Plastic to reduce lag. Original materials are restored when disabled. Also applies to parts added while enabled.",
+	Callback = function(Value)
+		if Value then
+			for _, v in workspace.CurrentRooms:GetDescendants() do
+				if v:IsA("BasePart") then
+					v:SetAttribute("Mat", v.Material)
+					v.Material = "Plastic"
+				end
+			end
+		else
+			for _, v in workspace.CurrentRooms:GetDescendants() do
+				if v:IsA("BasePart") then
+					if v:GetAttribute("Mat") then
+						v.Material = v:GetAttribute("Mat") or "Plastic"
+					end
+				end
+			end
+		end
+	end
+})
 
 
 Toggles.BypassGiggle:OnChanged(function(Value)
