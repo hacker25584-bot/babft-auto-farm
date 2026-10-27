@@ -262,7 +262,7 @@ end
 if SaveManager then
 SaveManager:SetLibrary(Library)
 SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({'MenuKeybind','NotifyStyle'})
+SaveManager:SetIgnoreIndexes({'MenuKeybind'})
 SaveManager:SetFolder("NovaHub/DOORSLOBBY")
 SaveManager:BuildConfigSection(Tabs['Settings'])
 end
@@ -3934,7 +3934,7 @@ end
 if SaveManager then
 SaveManager:SetLibrary(Library)
 SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({'MenuKeybind','NotifyStyle'})
+SaveManager:SetIgnoreIndexes({'MenuKeybind'})
 SaveManager:SetFolder("NovaHub/DOORSLOBBY")
 SaveManager:BuildConfigSection(Tabs['Settings'])
 end
@@ -9048,16 +9048,7 @@ end)
 Groupboxes.Visuals_EntitySettings:AddToggle("EntityChatToggle", { Text = "Notify Chat", Default = false, Tooltip = "Sends a message in the chat when an entity spawns." })
 Groupboxes.Visuals_EntitySettings:AddInput("EntityChatMessage", { Text = "Message", Default = "spawned!", Numeric = false, Placeholder = "Message" })
 Groupboxes.Visuals_EntitySettings:AddDivider()
-Groupboxes.Visuals_EntitySettings:AddDropdown("NotifyStyle", { Text = "Notify Style", Values = { "Library" }, Default = "Library" })
-if Options.NotifyStyle and Options.NotifyStyle.OnChanged then
-	Options.NotifyStyle:OnChanged(function(Value)
-		if Value ~= "Library" then
-			pcall(function()
-				Options.NotifyStyle:SetValue("Library")
-			end)
-		end
-	end)
-end
+Groupboxes.Visuals_EntitySettings:AddDropdown("NotifyStyle", { Text = "Notify Style", Values = { "IRT", "Doors", "STX", "Library" }, Default = 1 })
 Groupboxes.Visuals_EntitySettings:AddSlider("NotifySoundVolume", { Text = "Sound Volume", Min = 0, Max = 10, Default = 3, Rounding = 1 })
 Groupboxes.Visuals_EntitySettings:AddToggle("NotifyPlaySound", { Text = "Play Sound", Default = true, Tooltip = "Makes notifications play an alert sound." })
 Groupboxes.Visuals_EntitySettings:AddToggle("NotifyKeepNotifications", { Text = "Keep Notifications", Default = false, Tooltip = "Certain notifications will stay on screen until they are no longer needed." })
