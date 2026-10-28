@@ -21,6 +21,7 @@ end
 print("[Panda] Authenticated. Premium:", result.isPremium)
 
 -- Your protected code goes below this line.
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
